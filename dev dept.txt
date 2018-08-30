@@ -1,0 +1,4 @@
+Improvements of pricechecker:
+1. move out product as separete entity in db
+2. introduce controller layer
+3. call create user only when user sign in
