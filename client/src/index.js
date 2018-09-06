@@ -23,13 +23,8 @@ const Root = () => {
       <div>
         <Router history={history}>
           <div>
-            <Route path="/" render={(props) => (
-              !auth.isAuthenticated() ? (
-                <App auth={auth} {...props} />
-              ) : (
-                <Redirect to="/home"/>
-              )
-            )} />
+            <Route path="/" exact render={(props) => <App auth={auth} {...props} />} />
+
             <Route path="/home" render={(props) => (
               !auth.isAuthenticated() ? (
                 <Redirect to="/"/>
@@ -37,6 +32,7 @@ const Root = () => {
                 <Home auth={auth} {...props} />
               )
             )} />
+
             <Route path="/crawler" render={(props) => (
               !auth.isAuthenticated() ? (
                 <Redirect to="/"/>
@@ -44,6 +40,7 @@ const Root = () => {
                 <Crawler auth={auth} {...props} />
               )
             )} />
+
             <Route path="/callback" render={(props) => {
               handleAuthentication(props);
               return <Callback {...props} /> 

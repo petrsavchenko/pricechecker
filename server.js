@@ -2,10 +2,6 @@ const express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// Crowling
-const needle = require('needle');
-const cheerio = require('cheerio');
-
 // Authentification
 const jwt = require('express-jwt');
 const jwtAuthz = require('express-jwt-authz');
@@ -43,6 +39,11 @@ mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+// debugger;
+// Manangers
+// var crawlersManager = require('./crawlers/crawlersManager');
+// crawlersManager.startAll();
 
 const checkJwt = jwt({
   // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.

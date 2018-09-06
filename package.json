@@ -19,7 +19,9 @@
     "mongoose": "^5.2.9",
     "mongoose-type-url": "^1.0.4",
     "morgan": "^1.8.2",
-    "needle": "^2.2.2"
+    "needle": "^2.2.2",
+    "react-bootstrap": "^0.32.3",
+    "react-modal": "^3.5.1"
   },
   "devDependencies": {
     "concurrently": "^3.6.1"

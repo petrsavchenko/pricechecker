@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { API_URL } from './../constants';
 import axios from 'axios';
+import Nav from '../Nav/Nav';
+import Crawler from '../Crawler/Crawler'
 
 class Home extends Component {
   constructor(props){
@@ -29,26 +31,34 @@ class Home extends Component {
 
   render() {
     return (
-      <table className="table">
-        <thead className="thead-dark">
-          <tr>
-            <th scope="col">Url</th>
-            <th scope="col">Created Date</th>
-            <th scope="col">Desired Price</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.data.map((crawler, i) =>
-            <tr key={i}>
-              <th key={crawler.url} scope="row"><a target="_blank" href={crawler.url}>{crawler.url}</a></th>
-              <td key={crawler.createdDate} scope="row">{new Date(crawler.createdDate).toLocaleString()}</td>
-              <td key={crawler.desiredPrice} scope="row">${crawler.desiredPrice}</td>
-              <td key={crawler.status} scope="row">{crawler.status}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <div>
+        <Nav auth={this.props.auth}></Nav>
+        <section id="crawlers" className="homehead">
+          <div className="container">
+            <Crawler auth={this.props.auth}></Crawler>
+            <table className="table text-white">
+              <thead>
+                <tr>
+                  <th scope="col">Url</th>
+                  <th scope="col">Created Date</th>
+                  <th scope="col">Desired Price</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.data.map((crawler, i) =>
+                  <tr key={i}>
+                    <th key={crawler.url} scope="row"><a target="_blank" href={crawler.url}>{crawler.url}</a></th>
+                    <td key={crawler.createdDate} scope="row">{new Date(crawler.createdDate).toLocaleString()}</td>
+                    <td key={crawler.desiredPrice} scope="row">${crawler.desiredPrice}</td>
+                    <td key={crawler.status} scope="row">{crawler.status}</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     );
   }
 }

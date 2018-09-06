@@ -2,13 +2,14 @@ var express = require('express');
 var router = express.Router();
 const User = require('../models/user');
 const Crawler = require('../models/crawler');
+var crawlersManager = require('../crawlers/crawlersManager');
  
 /**
  * Create
  */
 router.post('/users/:userId/crawlers', (req, res, next) => {
 
-	let data = Object.assign({}, { userId: req.params.userId }, req.body) || {}
+	let data = Object.assign({}, { creator: req.params.userId }, req.body) || {}
 
 	User.findById(data.userId)
 		.then(user => {
@@ -45,6 +46,8 @@ router.get('/users/:userId/crawlers', (req, res, next) => {
 	// remove skip and limit from data to avoid false querying
 	delete query.skip
 	delete query.limit
+	debugger;
+	crawlersManager.startAll();
 
 	Crawler.find({ creator: req.params.userId }).skip(skip).limit(limit)
 		.then(tasks => {

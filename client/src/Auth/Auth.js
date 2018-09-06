@@ -67,14 +67,15 @@ export default class Auth {
   getProfile(cb) {
     if (this.userProfile) {
       cb(null, this.userProfile);
-    }
-    let accessToken = this.getAccessToken();
-    this.auth0.client.userInfo(accessToken, (err, profile) => {
-      if (err) {
-        cb(err, null);
-      }
-      this.assosiateDbUser(profile, cb);
-    });
+    } else{
+      let accessToken = this.getAccessToken();
+      this.auth0.client.userInfo(accessToken, (err, profile) => {
+        if (err) {
+          cb(err, null);
+        }
+        this.assosiateDbUser(profile, cb);
+      });
+    }    
   }
 
   assosiateDbUser(profile, cb) {
