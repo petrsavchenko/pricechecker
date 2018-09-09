@@ -2,7 +2,7 @@ import auth0 from 'auth0-js';
 import axios from 'axios';
 import { AUTH_CONFIG } from './auth0-variables';
 import history from '../history';
-import { API_URL, AUTH_SUCCESSFUL_REDIRECT } from '../constants';
+import { API_URL, AUTH_SUCCESSFUL_REDIRECT, NOTFOUND } from '../constants';
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -79,26 +79,29 @@ export default class Auth {
   }
 
   assosiateDbUser(profile, cb) {
-    let me = this;
     const headers = { 'Authorization': `Bearer ${this.getAccessToken()}`};
-    axios.get(`${API_URL}/users`, { params: {email: profile.email} }, { headers })
+    axios.get(`${API_URL}/users`, { params: {email: profile.name} }, { headers })
       .then(res => {
           if(res.data._id) {
             this.setUserProfile(profile, res.data._id);
             cb(null, this.userProfile);
-          } else {
-              var data = { 
-                email: profile.email,
-                name: { first: profile.nickname, last: profile.nickname }
-              };
-              axios.post(`${API_URL}/users`, data, { headers })
-                .then(res => {
-                  this.setUserProfile(profile, res.data.id);
-                  cb(null, this.userProfile);
-                })
-                .catch(err => cb(err, null));
           }
-      }).catch(err => cb(err, null));  
+      }).catch(err => {
+        if(err.response.status == NOTFOUND){
+          var data = { 
+            email: profile.name,
+            name: { first: profile.nickname, last: profile.nickname }
+          };
+          axios.post(`${API_URL}/users`, data, { headers })
+            .then(res => {
+              this.setUserProfile(profile, res.data.id);
+              cb(null, this.userProfile);
+            })
+            .catch(err => cb(err, null));
+        } else {
+          cb(err, null)
+        }        
+      });  
   }
 
   setUserProfile(profile, userIdDb) {

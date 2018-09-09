@@ -45,6 +45,9 @@ router.get('/users/:userId', (req, res, next) => {
 
 })
 
+/**
+ * List
+ */
 router.get('/users', (req, res, next) => {
   
   let query = req.params || {};
@@ -110,7 +113,7 @@ router.delete('/users/:userId', (req, res, next) => {
       }
 
       // remove associated crawlers to avoid orphaned data
-      Crawler.deleteMany({ _id: userId })
+      Crawler.deleteMany({ userId: userId })
         .then(() => {
           res.send(204)
           next()

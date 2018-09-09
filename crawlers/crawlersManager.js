@@ -12,13 +12,11 @@ class CrawlersManager {
     }
 
     startAll () {
-        debugger;
         var me = this;
         Crawler.find({ status: { $ne: "Achieved" }}).then(crawlers => {
                 crawlers.forEach(function(crawler){
                     me.start(crawler);
                 });                
-                next()
             })
             .catch(err => {
                 throw new Error(err);
@@ -32,7 +30,9 @@ class CrawlersManager {
             throw new Error("The crawler is being processed");
         }
         var timerId = setInterval(function() {
-            me._checkPrice(crawler.url, crawler.desiredPrice);
+            console.log('Started crawling of ' + crawler.url);
+            me._checkPrice(crawler.url, crawler.desiredPrice)
+            console.log('Finished crawling of ' + crawler.url);
         }, checkInterval);
 
         this.crawlerTimerDictionary[crawler.id] = timerId;
@@ -43,6 +43,7 @@ class CrawlersManager {
         clearInterval(timerId);
 
         delete this.crawlerTimerDictionary[crawler.id];
+        console.log('Crawling of ' + crawler.url + ' has been stopped');
     }
 
     _checkPrice(url, desiredPrice) {   
@@ -50,12 +51,18 @@ class CrawlersManager {
             if (err) throw err;
     
             var $ = cheerio.load(res.body);
-            var price = $("#priceblock_ourprice").text();
+            var priceText = $("#priceblock_ourprice").text();
 
-            if(price <= desiredPrice) {
-                //notify user
-                //change crawler state to finished
-            }
+            var price = parseFloat(priceText.replace('$',''));
+            if (isNaN(price)) {
+                console.log("invalid format of price " + priceText);
+            } else {
+                console.log('Price is ' + price);
+                if(price <= desiredPrice) {
+                    //notify user
+                    //change crawler state to finished
+                }
+            }         
         });
     }
 }

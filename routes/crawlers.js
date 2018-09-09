@@ -9,9 +9,9 @@ var crawlersManager = require('../crawlers/crawlersManager');
  */
 router.post('/users/:userId/crawlers', (req, res, next) => {
 
-	let data = Object.assign({}, { creator: req.params.userId }, req.body) || {}
+	let data = Object.assign({}, { userId: req.params.userId }, req.body) || {}
 
-	User.findById(data.userId)
+	User.findById(req.params.userId)
 		.then(user => {
 
 			if (!user) {
@@ -20,8 +20,9 @@ router.post('/users/:userId/crawlers', (req, res, next) => {
 			}
 
 			Crawler.create(data)
-				.then(task => {
-					res.send(200, task)
+				.then(crawler => {
+					crawlersManager.start(crawler);
+					res.send(200, crawler)
 					next()
 				})
 				.catch(err => {
@@ -46,10 +47,8 @@ router.get('/users/:userId/crawlers', (req, res, next) => {
 	// remove skip and limit from data to avoid false querying
 	delete query.skip
 	delete query.limit
-	debugger;
-	crawlersManager.startAll();
 
-	Crawler.find({ creator: req.params.userId }).skip(skip).limit(limit)
+	Crawler.find({ userId: req.params.userId }).skip(skip).limit(limit)
 		.then(tasks => {
 
 			res.send(200, tasks)
@@ -65,7 +64,7 @@ router.get('/users/:userId/crawlers', (req, res, next) => {
 /**
  * Get
  */
-router.get('/users/:userId/crawler/:crawlerId', (req, res, next) => {
+router.get('/users/:userId/crawlers/:crawlerId', (req, res, next) => {
 
 	Crawler.findOne({ userId: req.params.userId, _id: req.params.crawlerId })
 		.then(crawler => {
@@ -116,7 +115,7 @@ router.put('/users/:userId/crawlers/:crawlerId', (req, res, next) => {
 /**
  * Delete
  */
-router.delete('/users/:userId/crawler/:crawlerId', (req, res, next) => {
+router.delete('/users/:userId/crawlers/:crawlerId', (req, res, next) => {
 
 	Crawler.findOneAndRemove({ userId: req.params.userId, _id: req.params.crawlerId })
 		.then((crawler) => {
@@ -126,6 +125,7 @@ router.delete('/users/:userId/crawler/:crawlerId', (req, res, next) => {
 				next()
 			}
 
+			crawlersManager.stop(crawler);
 			res.send(204)
 			next()
 

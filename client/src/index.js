@@ -7,7 +7,7 @@ import Auth from './Auth/Auth';
 import history from './history';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
-import Home from './Home/Home';
+import Crawlers from './Crawlers/Crawlers';
 import Crawler from './Crawler/Crawler';
 
 const auth = new Auth();
@@ -25,19 +25,11 @@ const Root = () => {
           <div>
             <Route path="/" exact render={(props) => <App auth={auth} {...props} />} />
 
-            <Route path="/home" render={(props) => (
+            <Route path="/crawlers" render={(props) => (
               !auth.isAuthenticated() ? (
                 <Redirect to="/"/>
               ) : (
-                <Home auth={auth} {...props} />
-              )
-            )} />
-
-            <Route path="/crawler" render={(props) => (
-              !auth.isAuthenticated() ? (
-                <Redirect to="/"/>
-              ) : (
-                <Crawler auth={auth} {...props} />
+                <Crawlers auth={auth} {...props} />
               )
             )} />
 

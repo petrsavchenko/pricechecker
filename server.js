@@ -40,10 +40,9 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// debugger;
-// Manangers
-// var crawlersManager = require('./crawlers/crawlersManager');
-// crawlersManager.startAll();
+//Start crawling
+var crawlersManager = require('./crawlers/crawlersManager');
+crawlersManager.startAll();
 
 const checkJwt = jwt({
   // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
