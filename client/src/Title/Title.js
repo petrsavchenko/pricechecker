@@ -2,11 +2,26 @@ import React, { Component } from 'react';
 
 class Title extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {url: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({url: event.target.value});
+  }
+
+
   watchIt() {
-      const {isAuthenticated, login} = this.props.auth;
-      if(!isAuthenticated()){
-          login();
-      }
+    const {isAuthenticated, login, setLandingPageUrl} = this.props.auth;
+    if(!isAuthenticated()) {
+      const landingPageUrl = this.state.url;
+      if(landingPageUrl)
+        setLandingPageUrl(landingPageUrl);
+      login();
+    }
   }
 
   render() {
@@ -14,14 +29,11 @@ class Title extends Component {
         <header className="masthead text-center text-white d-flex">
           <div className="container my-auto">
             <div className="row mx-auto">
-              <div className="col-lg-12 mx-auto">
-                {/* {
-                  (isAuthenticated()) ? ( <button className="btn btn-danger log" onClick={this.logout.bind(this)}>Log out </button> ) : ( <button className="btn btn-info log" onClick={this.login.bind(this)}>Log In</button> )
-                } */}
+              <div className="col-lg-12 mx-auto">               
                 <h1 className="text-uppercase mb-4">
-                    <strong>Amazon price tracker</strong>
+                  <strong>Amazon price tracker</strong>
                 </h1>
-                <input placeholder="Enter Amazon URL" className="form-control form-control-lg" required type="url"/>
+                <input placeholder="Enter Amazon URL" className="form-control form-control-lg" required type="url" onChange={this.handleChange}/>
                 <hr/>
               </div>
               <div className="col-lg-8 mx-auto">

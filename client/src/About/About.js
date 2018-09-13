@@ -9,7 +9,7 @@ class About extends Component {
                     <div className="col-lg-8 mx-auto text-center">
                     <h2 className="section-heading text-white">We've got what you need!</h2>
                     <hr className="light my-4"/>
-                    <p className="text-faded mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+                    <p className="text-faded mb-4">Our free Amazon price tracker monitors millions of products and alerts you when prices drop, helping you buy item at minimum price.</p>
                     <a className="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
                     </div>
                 </div>

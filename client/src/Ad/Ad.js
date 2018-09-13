@@ -5,8 +5,8 @@ class Ad extends Component {
     return (
       <section className="bg-dark text-white">
         <div className="container text-center">
-          <h2 className="mb-4">Free Download at Start Bootstrap!</h2>
-          <a className="btn btn-light btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/">Download Now!</a>
+          <h2 className="mb-4">Start looking after things which you really need!</h2>
+          <a className="btn btn-light btn-xl sr-button" href="https://www.amazon.com">Go Amazon</a>
         </div>
       </section>
     );

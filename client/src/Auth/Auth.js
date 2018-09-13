@@ -42,6 +42,16 @@ export default class Auth {
     });
   }
 
+  setLandingPageUrl(url) {
+    localStorage.setItem('url', url);
+  }
+
+  popLandingPageUrl() {
+    var url = localStorage.getItem('url');
+    localStorage.removeItem('url');
+    return url;
+  }
+
   setSession(authResult) {
     // Set the time that the access token will expire at
     let expiresAt = JSON.stringify(
@@ -87,7 +97,7 @@ export default class Auth {
             cb(null, this.userProfile);
           }
       }).catch(err => {
-        if(err.response.status == NOTFOUND){
+        if(err.response.status === NOTFOUND){
           var data = { 
             email: profile.name,
             name: { first: profile.nickname, last: profile.nickname }

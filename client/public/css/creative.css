@@ -247,7 +247,6 @@ section.homehead p {
 @media (min-width: 992px) {
   section.homehead {
     height: 100vh;
-    min-height: 650px;
     padding-bottom: 0;
   }
   section.homehead h1 {

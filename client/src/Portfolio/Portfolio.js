@@ -12,10 +12,10 @@ class Portfolio extends Component {
                 <div className="portfolio-box-caption">
                   <div className="portfolio-box-caption-content">
                     <div className="project-category text-faded">
-                      Category
+                      Benjamin Franklin
                     </div>
                     <div className="project-name">
-                      Project Name
+                      Beware of little expenses; a small leak will sink a great ship
                     </div>
                   </div>
                 </div>
@@ -27,10 +27,10 @@ class Portfolio extends Component {
                 <div className="portfolio-box-caption">
                   <div className="portfolio-box-caption-content">
                     <div className="project-category text-faded">
-                      Category
+                      Proverb
                     </div>
                     <div className="project-name">
-                      Project Name
+                      The art is not in making money, but in keeping it
                     </div>
                   </div>
                 </div>
@@ -42,10 +42,10 @@ class Portfolio extends Component {
                 <div className="portfolio-box-caption">
                   <div className="portfolio-box-caption-content">
                     <div className="project-category text-faded">
-                      Category
+                      Margo Vader
                     </div>
                     <div className="project-name">
-                      Project Name
+                      Small amounts saved daily add up to huge investments in the end
                     </div>
                   </div>
                 </div>
@@ -57,10 +57,10 @@ class Portfolio extends Component {
                 <div className="portfolio-box-caption">
                   <div className="portfolio-box-caption-content">
                     <div className="project-category text-faded">
-                      Category
+                      J. Paul Getty
                     </div>
                     <div className="project-name">
-                      Project Name
+                      If you can count your money, you don't have a billion dollars.
                     </div>
                   </div>
                 </div>
@@ -72,10 +72,10 @@ class Portfolio extends Component {
                 <div className="portfolio-box-caption">
                   <div className="portfolio-box-caption-content">
                     <div className="project-category text-faded">
-                      Category
+                      Warren Buffet
                     </div>
                     <div className="project-name">
-                      Project Name
+                      Do not save what is left after spending, but spend what is left after saving.
                     </div>
                   </div>
                 </div>
@@ -87,10 +87,10 @@ class Portfolio extends Component {
                 <div className="portfolio-box-caption">
                   <div className="portfolio-box-caption-content">
                     <div className="project-category text-faded">
-                      Category
+                      M.K. Soni
                     </div>
                     <div className="project-name">
-                      Project Name
+                      All days are not same. Save for a rainy day. When you don’t work, savings will work for you.
                     </div>
                   </div>
                 </div>

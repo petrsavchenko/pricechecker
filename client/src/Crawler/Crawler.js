@@ -26,6 +26,21 @@ class Crawler extends Component {
     this.onDelete = this.onDelete.bind(this);
   }
 
+  componentDidMount() {
+    this.getLandingPageUrl();
+  }
+
+  getLandingPageUrl() {
+    const { popLandingPageUrl } = this.props.auth;
+    var url = popLandingPageUrl();
+    if (url) {
+      this.setState({
+        isShowModal: true,
+        landingPageUrl: url
+      });
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     let me = this;
@@ -41,7 +56,10 @@ class Crawler extends Component {
         // 'Content-Type': 'multipart/form-data'
       };
       axios.post(`${API_URL}/users/${userProfile.userIdDb}/crawlers`, data, { headers })
-        .then(res => me.props.onAdd(res.data))
+        .then(res => {
+          me.props.onAdd(res.data); 
+          me.$closeForm()
+        })
         .catch(err => console.log(err));
     })
   }
@@ -50,6 +68,13 @@ class Crawler extends Component {
     this.setState({
       isShowModal: !this.state.isShowModal
     });
+  }
+
+  //Close opened Model
+  //TODO: Should be remove then React Bootstrap is used
+  $closeForm() {
+    var $ = window.$;
+    $('.modal').modal('toggle');
   }
 
   onDelete(event) {
@@ -84,7 +109,7 @@ class Crawler extends Component {
               <div className="form-group">
                 <div className="input-group-lg">
                   <label htmlFor="url">Your product URL</label>
-                  <input type="url" name="url" id="url" className="form-control" placeholder="Enter url" required/>
+                  <input type="url" name="url" id="url" defaultValue={this.state.landingPageUrl} className="form-control" placeholder="Enter url" required/>
                   <small id="urlHelp" className="form-text text-muted">We'll never share products which you are looking for with anyone else.</small>
                 </div>
               </div>

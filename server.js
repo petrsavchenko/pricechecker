@@ -42,7 +42,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //Start crawling
 var crawlersManager = require('./crawlers/crawlersManager');
-crawlersManager.startAll();
+// crawlersManager.startAll();
 
 const checkJwt = jwt({
   // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
@@ -63,6 +63,9 @@ const checkScopes = jwtAuthz([ 'read:messages' ]);
 app.get('/api/hello', checkJwt, checkScopes, (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
+
+//not to cancel dependent thread tasks
+process.on('uncaughtException', err => console.log(err));
 
 // app.get('/api/test', (req, result) => {
 //     const URL = 'https://www.amazon.com/Atlin-Tumbler-Double-Stainless-Insulation/dp/B074XMH3W2';

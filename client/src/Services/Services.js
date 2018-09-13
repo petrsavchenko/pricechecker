@@ -16,30 +16,30 @@ class Services extends Component {
             <div className="row">
               <div className="col-lg-3 col-md-6 text-center">
                 <div className="service-box mt-5 mx-auto">
-                  <i className="fa fa-4x fa-diamond text-primary mb-3 sr-icons"></i>
-                  <h3 className="mb-3">Sturdy Templates</h3>
-                  <p className="text-muted mb-0">Our templates are updated regularly so they don't break.</p>
+                  <i className="fa fa-4x fa-bell text-primary mb-3 sr-icons"></i>
+                  <h3 className="mb-3">Price Drop Alerts</h3>
+                  <p className="text-muted mb-0">Create Amazon price watches and get alerts via email when prices drop.</p>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 text-center">
                 <div className="service-box mt-5 mx-auto">
-                  <i className="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i>
-                  <h3 className="mb-3">Ready to Ship</h3>
-                  <p className="text-muted mb-0">You can use this theme as is, or you can make changes!</p>
+                  <i className="fa fa-4x fa-area-chart text-primary mb-3 sr-icons"></i>
+                  <h3 className="mb-3">History graphs</h3>
+                  <p className="text-muted mb-0">View the price history of over 18 million Amazon products!</p>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 text-center">
                 <div className="service-box mt-5 mx-auto">
-                  <i className="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
-                  <h3 className="mb-3">Up to Date</h3>
-                  <p className="text-muted mb-0">We update dependencies to keep things fresh.</p>
+                  <i className="fa fa-4x fa-bookmark text-primary mb-3 sr-icons"></i>
+                  <h3 className="mb-3">Auto booking</h3>
+                  <p className="text-muted mb-0">We will book a product for you if price will go down much more then your desired price.</p>
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 text-center">
                 <div className="service-box mt-5 mx-auto">
-                  <i className="fa fa-4x fa-heart text-primary mb-3 sr-icons"></i>
-                  <h3 className="mb-3">Made with Love</h3>
-                  <p className="text-muted mb-0">You have to make your websites with love these days!</p>
+                  <i className="fa fa-4x fa-usd text-primary mb-3 sr-icons"></i>
+                  <h3 className="mb-3">Save up to 80% off</h3>
+                  <p className="text-muted mb-0">View products listed by recent price drop!</p>
                 </div>
               </div>
             </div>

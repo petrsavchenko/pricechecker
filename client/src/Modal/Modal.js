@@ -3,22 +3,11 @@ import ReactDOM from 'react-dom';
 
 class Modal extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.onSubmitBtnClick = this.onSubmitBtnClick.bind(this);
-  }
-
   componentDidMount() {
     var element = ReactDOM.findDOMNode(this);
     var $ = window.$;
     $(element).modal('show');
     $(element).on('hidden.bs.modal', this.props.onClose);
-  }
-
-  onSubmitBtnClick() {
-    var $ = window.$;
-    $('.modal').modal('toggle');
   }
 
   render() {
@@ -34,7 +23,7 @@ class Modal extends Component {
               {this.props.children}
             </div>
             <div className="modal-footer">
-              <button type="submit" form={this.props.formId} onClick={this.onSubmitBtnClick} className="btn btn-primary btn-lg">Submit</button>
+              <button type="submit" form={this.props.formId} className="btn btn-primary btn-lg">Submit</button>
             </div>
           </div>
         </div>

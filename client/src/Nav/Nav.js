@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 class Nav extends Component {
 
     componentDidMount() {
-        const {isAuthenticated} = this.props.auth;
-        let creative = window.creative;
+        const creative = window.creative;
         if(!creative) {
             throw new Error("creavite.js was not loaded");
         }
@@ -12,7 +11,7 @@ class Nav extends Component {
     }
 
   render() {
-    const {isAuthenticated} = this.props.auth;
+    const {isAuthenticated, logout, login} = this.props.auth;
     return (
         <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div className="container">
@@ -21,25 +20,27 @@ class Nav extends Component {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 {
-                    (!isAuthenticated()) ? 
+                    !isAuthenticated() ? 
                     (<div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <a className="nav-link js-scroll-trigger" href="#about">About</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link js-scroll-trigger" href="#services">Services</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link js-scroll-trigger" href="#contact">Contact</a>
-                        </li>
+                            <li className="nav-item">
+                                <a className="nav-link js-scroll-trigger" href="#about">About</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link js-scroll-trigger" href="#services">Services</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                            </li>
+                            <li>
+                                <button className="btn btn-info log" onClick={login}>Log In</button>
+                            </li>
                         </ul>
-                     </div>) : null
-                }
-                
+                     </div>) : <button className="btn btn-danger log" onClick={logout}>Log out </button>
+                }                
             </div>
         </nav>
     );

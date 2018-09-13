@@ -57,13 +57,20 @@ class Crawlers extends Component {
     var selectedCrawlerId = this.state.selectedCrawlerId;
     if(selectedCrawlerId) {
       this.setState({
-        data: this.state.data.filter((crawler)=> crawler._id != selectedCrawlerId),
+        data: this.state.data.filter(crawler => crawler._id !== selectedCrawlerId),
         selectedCrawlerId: null
       })
     }
   }
 
   render() {
+    const noSecondsOptions = { 
+      year: "numeric", 
+      month:"numeric", 
+      day:"numeric", 
+      hour:"numeric", 
+      minute:"numeric"
+    };
     return (
       <div>
         <Nav auth={this.props.auth}></Nav>
@@ -81,16 +88,14 @@ class Crawlers extends Component {
                   <th scope="col">Url</th>
                   <th scope="col">Created Date</th>
                   <th scope="col">Desired Price</th>
-                  {/* <th scope="col">Status</th> */}
                 </tr>
               </thead>
               <tbody>
                 {this.state.data.map((crawler, i) =>
                   <tr key={crawler._id} className={this.isActive(crawler._id)} onClick={this.onRowClick.bind(this, crawler._id)}>
-                    <td key={crawler.url} scope="row"><a target="_blank" href={crawler.url}>{crawler.url}</a></td>
-                    <td key={crawler.createdDate} scope="row">{new Date(crawler.createdDate).toLocaleString()}</td>
-                    <td key={crawler.desiredPrice} scope="row">${crawler.desiredPrice}</td>
-                    {/* <td key={crawler.status} scope="row">{crawler.status}</td> */}
+                    <td key={crawler.url}><a target="_blank" href={crawler.url}>{crawler.url}</a></td>
+                    <td key={crawler.createdDate}>{new Date(crawler.createdDate).toLocaleString([], noSecondsOptions)}</td>
+                    <td key={crawler.desiredPrice}>${crawler.desiredPrice}</td>
                   </tr>
                 )}
               </tbody>
