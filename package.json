@@ -22,7 +22,9 @@
     "needle": "^2.2.2",
     "nodemailer": "^4.6.8",
     "react-bootstrap": "^0.32.3",
-    "react-modal": "^3.5.1"
+    "react-modal": "^3.5.1",
+    "winston": "^3.1.0",
+    "winston-daily-rotate-file": "^3.3.2"
   },
   "devDependencies": {
     "concurrently": "^3.6.1"

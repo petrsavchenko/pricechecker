@@ -1,0 +1,70 @@
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Price is 24.99","level":"info"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"message":"Price is 24.99","level":"info"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"code":"ECONNRESET","level":"error","message":"Error during get request to https://www.amazon.com/dp/B074XMH3W2"}
+{"message":"invalid format of price ","level":"warn"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Price is 24.99","level":"info"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ECONNRESET","level":"error","message":"Error during get request to http://test/"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"message":"invalid format of price ","level":"warn"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"code":"EAUTH","response":"534-5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbtj\n534-5.7.14 Dcd3s9wX6Ho8vp0QSFiEh-v-4HlTtq-qhr_lcpPHVgtT-l2f970HOjPf3cJhHr1ULoJZex\n534-5.7.14 jyIntrkklDUHBSBUpBiulTwY4gYUxwP6rINspuwGSAp3W-cCw0FiR-WhdYAVVUk8_AAUzD\n534-5.7.14 2HWIkFD5iBUgB7KahbQ1OH44V-cB9yvAlbNU9CpsSB_WZ2rlL6ugZn9SaxKh7DkazqDhzK\n534-5.7.14 9zWl7wJ2iFRFce4TtgRjWL1V_MWkhjJK6jK4YDMMqct_BU4g7e0niTHK3AZkPsSxCE4eMl\n534-5.7.14 CSa-sMhdi26ikzXiCRkae6wDH2GhHyc3SguFXVw2SgyNpaA2XlSHPXp8vRojwzvUG0SJs1\n534-5.7.14 Y-O4nvyk-fv9cNBx4U29J-9Rsp5qKwQ6s2jwBOmGP_J2VSbXNxIPbW64F8fuR4IZNIZYGi\n534-5.7.14 yBrZWri3fqj9paGrpRkBM2Y_qWIQKNSICr0Crypl4G2aXwGs6ymzpOIdEjSvJA5K2b7P8t\n534-5.7.14 KtOSQ> Please log in via your web browser and then try again.\n534-5.7.14  Learn more at\n534 5.7.14  https://support.google.com/mail/answer/78754 x24-v6sm9283309pfh.67 - gsmtp","responseCode":534,"command":"AUTH PLAIN","level":"error","message":"Error during sending email"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"invalid format of price ","level":"warn"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"message":"invalid format of price ","level":"warn"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Price is 24.99","level":"info"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"code":"ECONNRESET","level":"error","message":"Error during get request to http://test/"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ECONNRESET","level":"error","message":"Error during get request to https://www.amazon.com/dp/B074XMH3W2"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"invalid format of price ","level":"warn"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"message":"Email sent: 250 2.0.0 OK 1536937863 l10-v6sm19325364pfj.179 - gsmtp. CrawlerId: 5b94e6aeafa45f04a8defed2. Real time price: 24.99","level":"info"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"message":"Price is 24.99","level":"info"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}
+{"message":"Started crawling id: 5b9bce7052bb4a2ab47e2260 of http://test/","level":"info"}
+{"message":"Started crawling id: 5b94e6aeafa45f04a8defed2 of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ECONNRESET","level":"error","message":"Error during get request to https://www.amazon.com/dp/B074XMH3W2"}
+{"message":"invalid format of price ","level":"warn"}
+{"message":"Finished crawling of https://www.amazon.com/dp/B074XMH3W2","level":"info"}
+{"code":"ENOTFOUND","errno":"ENOTFOUND","syscall":"getaddrinfo","hostname":"test","host":"test","port":80,"level":"error","message":"Error during get request to http://test/"}

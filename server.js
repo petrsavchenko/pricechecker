@@ -17,9 +17,9 @@ var crawlers = require('./routes/crawlers');
 const app = express();
 const port = process.env.PORT || 3001;
 
-if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
-  throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file'
-}
+// if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
+//   throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file'
+// }
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,47 +40,62 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-//Start crawling
-var crawlersManager = require('./crawlers/crawlersManager');
-// crawlersManager.startAll();
 
-const checkJwt = jwt({
-  // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
-  }),
-  // Validate the audience and the issuer.
-  audience: process.env.AUTH0_AUDIENCE,
-  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
-  algorithms: ['RS256']
-});
 
-const checkScopes = jwtAuthz([ 'read:messages' ]);
+// const checkJwt = jwt({
+//   // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
+//   secret: jwksRsa.expressJwtSecret({
+//     cache: true,
+//     rateLimit: true,
+//     jwksRequestsPerMinute: 5,
+//     jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+//   }),
+//   // Validate the audience and the issuer.
+//   audience: process.env.AUTH0_AUDIENCE,
+//   issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+//   algorithms: ['RS256']
+// });
 
-app.get('/api/hello', checkJwt, checkScopes, (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
+// const checkScopes = jwtAuthz([ 'read:messages' ]);
+
+// app.get('/api/hello', checkJwt, checkScopes, (req, res) => {
+//   res.send({ express: 'Hello From Express' });
+// });
 
 //not to cancel dependent thread tasks
-process.on('uncaughtException', err => console.log(err));
+// process.on('uncaughtException', err => console.log(err));
 
-// app.get('/api/test', (req, result) => {
-//     const URL = 'https://www.amazon.com/Atlin-Tumbler-Double-Stainless-Insulation/dp/B074XMH3W2';
-//     let price = 0;
+const winston = require('winston');
+const fs = require('fs');
+const env = process.env.NODE_ENV || 'development';
+const logDir = 'log';
+// Create the log directory if it does not exist
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir);
+}
+const tsFormat = () => (new Date()).toLocaleTimeString();
 
-//     needle.get(URL, function(err, res){
-//       if (err) throw err;
+winston.add(new (require('winston-daily-rotate-file'))({
+  filename: `${logDir}/log`,
+  timestamp: tsFormat,
+  datePattern: 'D-M-Y',
+  prepend: true,
+  json: false,
+  level: env === 'development' ? 'verbose' : 'info',
+}));
 
-//       var $ = cheerio.load(res.body);
+//
+// You can add a separate exception logger by passing it to `.exceptions.handle`
+//
+winston.exceptions.handle(
+  new winston.transports.File({ filename: `${logDir}/exceptions.log` })
+);
 
-//       price = $("#priceblock_ourprice").text();
-//       // console.log(price);
-//       result.send({ price: price });
-//     });
-// });
+winston.exitOnError = false;
+
+//Start crawling
+var crawlersManager = require('./crawlers/crawlersManager');
+crawlersManager.startAll();
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

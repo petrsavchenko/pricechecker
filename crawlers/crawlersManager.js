@@ -1,6 +1,7 @@
 // Crowling
 const needle = require('needle');
 const cheerio = require('cheerio');
+const winston = require('winston');
 
 const User = require('../models/user');
 const Crawler = require('../models/crawler');
@@ -14,65 +15,70 @@ class CrawlersManager {
     startAll () {
         var me = this;
         Crawler.find({/* status: { $ne: "Achieved" } */}).then(crawlers => {
-                crawlers.forEach(function(crawler){
-                    me.start(crawler);
-                });                
+                crawlers.forEach(crawler => me.start(crawler));   
             })
-            .catch(err => {
-                throw new Error(err);
-            })
+            .catch(err => winston.error(`Error on Crawler.find`, err))
     }
 
     start (crawler) {
         var me = this;
         var checkInterval = process.env.PRICECHECKINTERVAL || 10000;
         if (this.crawlerTimerDictionary[crawler.id]) {
-            throw new Error("The crawler is being processed");
+            winston.error(`The crawler id: ${crawler.id} has been being processed`);
+            return;
         }
         var timerId = setInterval(function() {
-            console.log('Started crawling of ' + crawler.url);
-            me._checkPrice(crawler)
+            winston.info(`Started crawling id: ${crawler.id} of ${crawler.url}`);
+            me._checkPrice(crawler);
         }, checkInterval);
 
         this.crawlerTimerDictionary[crawler.id] = timerId;
     }
 
     stop (crawler) {
+        if (!crawler) {
+            winston.error('Crawler obj cannot be null');
+            return;
+        }
         var timerId = this.crawlerTimerDictionary[crawler.id];
-        clearInterval(timerId);
+        if (!timerId){
+            winston.error(`The crawler id: ${crawler.id} is not being processed`);
+            return;
+        }
 
+        clearInterval(timerId);
         delete this.crawlerTimerDictionary[crawler.id];
-        console.log('Crawling of ' + crawler.url + ' has been stopped');
+        winston.info(`Crawling of ${crawler.url} id: ${crawler.id} has been stopped`);
     }
 
-    _checkPrice(crawler) {
+    _checkPrice (crawler) {
         var me = this;
         if (!crawler) {
-            throw new Error("Crawler obj cannot be null");
+            winston.error('Crawler obj cannot be null');
+            return;
         }
         try {
-            needle.get(crawler.url, function(err, res) {
-                if (err) throw err;
+            needle('get', crawler.url)
+                .then(res => {
+                    var $ = cheerio.load(res.body);
+                    var priceText = $("#priceblock_ourprice").text();
         
-                var $ = cheerio.load(res.body);
-                var priceText = $("#priceblock_ourprice").text();
-    
-                var price = parseFloat(priceText.replace('$',''));
-                if (isNaN(price)) {
-                    console.log("invalid format of price " + priceText);
-                } else {
-                    console.log('Price is ' + price);
-                    if(price <= crawler.desiredPrice) {
-                        me._sendEmail(crawler, price);
-                        me._markAsArchieved(crawler._id);
+                    var price = parseFloat(priceText.replace('$',''));
+                    if (isNaN(price)) {
+                        winston.warn("invalid format of price " + priceText);
+                    } else {
+                        winston.info('Price is ' + price);
+                        if(price <= crawler.desiredPrice) {
+                            me._sendEmail(crawler, price);
+                            me._markAsArchieved(crawler._id);
+                        }
                     }
-                }
-                console.log('Finished crawling of ' + crawler.url);
-            });
+                    winston.info('Finished crawling of ' + crawler.url);
+                })
+                .catch(err => winston.error(`Error during get request to ${crawler.url}`, err))
         } catch (error) {
-            console.log(error);            
-        }
-        
+            winston.error(`Error during get request to ${crawler.url}`, err);        
+        }        
     }
 
     _sendEmail(crawler, realtimePrice) {
@@ -81,8 +87,8 @@ class CrawlersManager {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'petek.h2o@gmail.com',
-                pass: 'gtnh5512'
+                user: 'petrsavchenkooo@gmail.com',
+                pass: '3pyuQhLJ5k'
             }
         });
 
@@ -90,11 +96,11 @@ class CrawlersManager {
 			.then(user => {
 
 				if (!user) {
-                    throw new Error("User was not found")
+                    winston.error('User was not found');
                 }
                 
                 var mailOptions = {
-                    from: 'petek.h2o@gmail.com',
+                    from: 'petrsavchenkooo@gmail.com',
                     to: 'petr.savchenko@hotmail.com',
                     subject: 'Price notification about ' + crawler.url,
                     html: `Hey ${user.name.firstName}</br>
@@ -104,15 +110,15 @@ class CrawlersManager {
         
                 transporter.sendMail(mailOptions, function(error, info) {
                     if (error) {
-                        console.log(error);
+                        winston.error('Error during sending email', error);
                     } else {
-                        console.log('Email sent: ' + info.response);
+                        winston.info(`Email sent: ${ info.response}. CrawlerId: ${crawler.id}. Real time price: ${realtimePrice}`);
                     }
                 });
 
 
 			}).catch(err => {
-				throw new Error(err);
+				winston.error('Error on User.findById', err);
 			})
     }
 
@@ -121,12 +127,12 @@ class CrawlersManager {
             .then(crawler => {
 
                 if (!crawler) {
-                    throw new Error ("crawler was not found")
+                    winston.error('Crawler was not found');
                 }
 
             })
             .catch(err => {
-                throw new Error (err);
+                winston.error('Error on Crawler.update', err);
             })
 
     }
