@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-class Portfolio extends Component {
+class Products extends Component {
   render() {
     return (
-      <section className="p-0" id="portfolio">
+      <section className="p-0" id="products">
         <div className="container-fluid p-0">
           <div className="row no-gutters popup-gallery">
             <div className="col-lg-4 col-sm-6">
@@ -103,4 +103,4 @@ class Portfolio extends Component {
   }
 }
 
-export default Portfolio;
+export default Products;

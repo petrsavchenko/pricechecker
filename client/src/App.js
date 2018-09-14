@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import About from './About/About';
 import Services from './Services/Services';
-import Portfolio from './Portfolio/Portfolio';
+import Products from './Products/Products';
 import Ad from './Ad/Ad';
 import Contact from './Contact/Contact';
 import Nav from './Nav/Nav';
@@ -24,7 +24,7 @@ class App extends Component {
 
         <Services/>
 
-        <Portfolio/>
+        <Products/>
 
         <Ad/>
 
