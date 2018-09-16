@@ -82,14 +82,8 @@ var mongoose = require('mongoose')
 
 const opts = {
   promiseLibrary: global.Promise,
-  server: {
-      auto_reconnect: true,
-      reconnectTries: Number.MAX_VALUE,
-      reconnectInterval: 1000,
-  },
-  config: {
-      autoIndex: true,
-  },
+  auto_reconnect: true,
+  autoIndex: true,
   useNewUrlParser: true 
 }
 
