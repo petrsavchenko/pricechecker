@@ -103,7 +103,7 @@ class CrawlersManager {
                     from: 'petrsavchenkooo@gmail.com',
                     to: 'petr.savchenko@hotmail.com',
                     subject: 'Price notification about ' + crawler.url,
-                    html: `Hey ${user.name.firstName}</br>
+                    html: `Hey ${user.name.first}</br>
                         Your desired price was $${crawler.desiredPrice}</br>
                         Real time price is $${realtimePrice}`
                 };
