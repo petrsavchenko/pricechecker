@@ -6,7 +6,7 @@ import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import Crawlers from './Crawlers/Crawlers';
 
 const auth = new Auth();
@@ -50,4 +50,4 @@ const Root = () => {
   }
 
 ReactDOM.render(<Root />, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
