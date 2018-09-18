@@ -1,6 +1,6 @@
 {
   "name": "pricecrowler",
-  "version": "1.0.0",
+  "version": "0.0.0.1",
   "scripts": {
     "client": "cd client && npm start",
     "heroku-postbuild": "cd client && npm install && npm run build",
