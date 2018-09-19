@@ -2,59 +2,80 @@
 
 Simple price checker service which send email if the price drops out for your desired one. Currently it works only for amazon web site. Price checking is carrying out by crawling bot which periodically opens links and grabbing real time price.
 
-## Getting Started
+## Folder Structure
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
+After creation, your project should look like this:
 
 ```
-Give examples
+my-app/
+  client/
+    README.md
+    node_modules/
+    package.json
+    public/
+        css/
+          creative.css
+        img/
+          ...
+        js/
+          creative.js
+        scss/
+          ...
+        vendor/
+          ...
+        index.html
+        favicon.ico
+    src/
+        ...
+        App.css
+        App.js
+        App.test.js
+        index.css
+        index.js
+        logo.svg
+  routes/
+    crawlers.js
+    users.js
+  models/
+    crawler.js
+    user.js
+  helpers/
+    crawlersManager.js
+  config.js
+  server.js
+
 ```
 
-### Installing
+`client` folder contains react app was based on [**Create React App**](https://github.com/facebook/create-react-app) package. So it uses Webpack.
 
-A step by step series of examples that tell you how to get a development env running
+`client/public` folder contains design part of app which was based on [**startbootstrap-creative**](https://github.com/BlackrockDigital/startbootstrap-creative) html theme. So `client/public/css`, `client/public/js`, `client/public/scss`, `client/public/vendor` are files from this package. It uses gulp as for bundling manager so gulpfile could be found in `client` folder.
 
-Say what the step will be
+All server side files are located in root. 
+`routes` folder contains available API methods. 
+`models` folder contains domain models which mapped to MongoDb.
+`helpers` folder contains `crawlersManager` which manage crawling process of urls.
 
-```
-Give the example
-```
 
-And repeat
+## Available Scripts
 
-```
-until finished
-```
+In the project directory, you can run:
 
-End with an example of getting some data out of the system or using it for a little demo
+### `npm run client`
 
-## Running the tests
+It fires npm install for client folder and running npm start. As a result it
+runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Explain how to run the automated tests for this system
+### `npm run server`
 
-### Break down into end to end tests
+Builds and runs server part of app. It available by 
+[http://localhost:3001](http://localhost:3001) to view it in the browser or postman.
 
-Explain what these tests test and why
+### `npm run dev`
 
-```
-Give an example
-```
+It runs npm client and npm server simultaneously. **Idially for development purposes** 
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+## Authentification
 
 ## Built With
 
