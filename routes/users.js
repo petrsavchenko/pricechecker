@@ -50,7 +50,7 @@ router.get('/users/:userId', (req, res, next) => {
  */
 router.get('/users', (req, res, next) => {
   
-  let query = req.params || {};
+  let query = req.query || {};
 
   User.findOne(query)
     .then(user => {

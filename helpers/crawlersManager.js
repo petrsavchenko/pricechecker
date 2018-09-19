@@ -6,6 +6,11 @@ const winston = require('winston');
 const User = require('../models/user');
 const Crawler = require('../models/crawler');
 
+/**
+ * Config
+ */
+const config = require('../config');
+
 class CrawlersManager {
 
     constructor() {
@@ -14,7 +19,7 @@ class CrawlersManager {
 
     startAll () {
         var me = this;
-        Crawler.find({/* status: { $ne: "Achieved" } */}).then(crawlers => {
+        Crawler.find({ status: { $ne: "Achieved" } }).then(crawlers => {
                 crawlers.forEach(crawler => me.start(crawler));   
             })
             .catch(err => winston.error(`Error on Crawler.find`, err))
@@ -22,7 +27,7 @@ class CrawlersManager {
 
     start (crawler) {
         var me = this;
-        var checkInterval = process.env.PRICECHECKINTERVAL || 10000;
+        var checkInterval = config.pricecheckingInverval;
         if (this.crawlerTimerDictionary[crawler.id]) {
             winston.error(`The crawler id: ${crawler.id} has been being processed`);
             return;

@@ -8,5 +8,6 @@ module.exports = {
     db: {
         uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/pricechecker',
     },
-    logDir: 'logs'
+    logDir: 'logs',
+    pricecheckingInverval: 600000 //10 minutes
 }
