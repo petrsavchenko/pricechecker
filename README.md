@@ -77,32 +77,48 @@ It runs npm client and npm server simultaneously. **Idially for development purp
 
 ## Authentification
 
+To provide basic authentification [Auth0](https://auth0.com/) platform was used. So this covers all logic around security, SSO logins, passwords storage and so on. 
+
+`client/src/Auth` folder has Auth Helper which provides api methods to contact Auth0. It allows to retrieve info about current user, if an user log in, log in and out user. 
+
+Authentification based on 
+[JSON Web Tokens](https://en.wikipedia.org/wiki/JSON_Web_Token). Once user authorized auth0 generates token and put it into local storage. This token is used to get access to API methods of backend. 
+
+So frontend should injects `Authorization` property into header every request to API to be indentified by backend and get access.
+
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+These packeges was used on backend:
+* [nodemailer](https://github.com/nodemailer/nodemailer) - to send emails when price drops out to desired one
+* [winston](https://github.com/winstonjs/winston) - to log errors and service info
+* [concurrently](https://github.com/kimmobrunfeldt/concurrently) - to run server and client simultaneously
+* [mongoose](https://mongoosejs.com/) - ODM to execute CRUD operations on model entities of MongoDb
+* [needle](https://github.com/tomas/needle) - http client for Node.js with proxy, iconv, cookie, deflate & multipart support.
 
-## Contributing
+These packeges was used on frontend:
+* [startbootstrap-creative](https://github.com/BlackrockDigital/startbootstrap-creative) - html theme based on twitter bootstrap
+* [axios](https://github.com/axios/axios) - for request to backend
+* [auth0-js](https://github.com/auth0/auth0.js) - for authentification
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
+## Technical Debt
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* move out product as separete entity in db
+* introduce controller layer
+* call create user only when user sign in
+* inject error handler and crash report
+* validaton on server side
+* form to Json
+* avoid jQuery write all to React Bootstrap
+* did proper components heerarcy (Crawler -> Model)
+* add controller layer in UI 
+* factory of diffrent types of price checkers
+* fix in IE
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+[**Petr Savchenko**](http://petrsavchenko.ru) - retarded full stack dev from :ru:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+This project is licensed under the MIT License 
