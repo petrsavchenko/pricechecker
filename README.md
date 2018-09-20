@@ -117,7 +117,7 @@ These packeges was used on frontend:
 
 ## Authors
 
-[**Petr Savchenko**](http://petrsavchenko.ru) - retarded full stack dev from :ru:
+[**Petr Savchenko**](http://petrsavchenko.ru) - retarded full stack dev from Russia :snowflake:
 
 ## License
 
