@@ -94,10 +94,14 @@ class CrawlersManager {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'petrsavchenkooo@gmail.com',
-                pass: '3pyuQhLJ5k'
+                // user: 'petrsavchenkooo@gmail.com',
+                // pass: '3pyuQhLJ5k'
+                user: 'petek.h2o@gmail.com',
+                pass: 'gtnh5512'
             }
         });
+
+        console.log(`Start sending email to ${crawler.userId}`);
 
         User.findById(crawler.userId)
 			.then(user => {
@@ -107,19 +111,23 @@ class CrawlersManager {
                 }
                 
                 var mailOptions = {
-                    from: 'petrsavchenkooo@gmail.com',
+                    from: 'petek.h2o@gmail.com',
                     to: user.email,
                     subject: 'Price notification about ' + crawler.url,
                     html: `Hey ${user.name.first}</br>
                         Your desired price was $${crawler.desiredPrice}</br>
                         Real time price is $${realtimePrice}`
                 };
+
+                console.log(`Ready to send email to ${user.email}`);
         
                 transporter.sendMail(mailOptions, function(error, info) {
                     if (error) {
+                        console.log(`Error during sending email ${error}`);
                         winston.error('Error during sending email', error);
                     } else {
                         winston.info(`Email sent: ${ info.response}. CrawlerId: ${crawler.id}. Real time price: ${realtimePrice}`);
+                        console.log(`Email sent: ${ info.response}. CrawlerId: ${crawler.id}. Real time price: ${realtimePrice}`);
                     }
                 });
 
