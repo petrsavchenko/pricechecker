@@ -9,7 +9,6 @@ const bodyParser = require('body-parser');
 // const jwksRsa = require('jwks-rsa');
 const cors = require('cors');
 const morgan = require('morgan');
-require('dotenv').config();
 
 /**
  * Config
@@ -22,8 +21,8 @@ const port = config.port;
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-// if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
-//   throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file'
+// if (!config.auth.domain || !config.auth.audience) {
+//   throw 'Make sure you have auth.domain, and auth.audience in your config file'
 // }
 
 app.use(bodyParser.json());
@@ -129,11 +128,11 @@ db.once('open', () => {
 //     cache: true,
 //     rateLimit: true,
 //     jwksRequestsPerMinute: 5,
-//     jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+//     jwksUri: `https://${config.auth.domain}/.well-known/jwks.json`
 //   }),
 //   // Validate the audience and the issuer.
-//   audience: process.env.AUTH0_AUDIENCE,
-//   issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+//   audience: config.auth.audience,
+//   issuer: `https://${config.auth.domain}/`,
 //   algorithms: ['RS256']
 // });
 

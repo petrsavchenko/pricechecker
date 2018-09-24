@@ -19,7 +19,8 @@ class CrawlersManager {
 
     startAll () {
         var me = this;
-        Crawler.find({ status: { $ne: "Achieved" } }).then(crawlers => {
+        Crawler.find({ status: { $ne: "Achieved" } })
+            .then(crawlers => {
                 crawlers.forEach(crawler => me.start(crawler));   
             })
             .catch(err => winston.error(`Error on Crawler.find`, err))
@@ -76,6 +77,7 @@ class CrawlersManager {
                         if(price <= crawler.desiredPrice) {
                             me._sendEmail(crawler, price);
                             me._markAsArchieved(crawler._id);
+                            me.stop(crawler);
                         }
                     }
                     winston.info('Finished crawling of ' + crawler.url);
@@ -106,7 +108,7 @@ class CrawlersManager {
                 
                 var mailOptions = {
                     from: 'petrsavchenkooo@gmail.com',
-                    to: 'petr.savchenko@hotmail.com',
+                    to: user.email,
                     subject: 'Price notification about ' + crawler.url,
                     html: `Hey ${user.name.first}</br>
                         Your desired price was $${crawler.desiredPrice}</br>
