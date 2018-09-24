@@ -94,10 +94,8 @@ class CrawlersManager {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                // user: 'petrsavchenkooo@gmail.com',
-                // pass: '3pyuQhLJ5k'
-                user: 'petek.h2o@gmail.com',
-                pass: 'gtnh5512'
+              user: 'petrsavchenkooo@gmail.com',
+              pass: '3pyuQhLJ5k'
             }
         });
 
@@ -111,7 +109,7 @@ class CrawlersManager {
                 }
                 
                 var mailOptions = {
-                    from: 'petek.h2o@gmail.com',
+                    from: 'petrsavchenkooo@gmail.com',
                     to: user.email,
                     subject: 'Price notification about ' + crawler.url,
                     html: `Hey ${user.name.first}</br>
