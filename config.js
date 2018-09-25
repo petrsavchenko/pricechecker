@@ -14,5 +14,5 @@ module.exports = {
       domain: 'petrsavchenko.au.auth0.com'
     },
     logDir: 'logs',
-    pricecheckingInverval: 5000 //600000 //10 minutes 
+    pricecheckingInverval: 60000 //1 minute 
 }
